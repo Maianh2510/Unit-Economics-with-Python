@@ -46,19 +46,38 @@ https://colab.research.google.com/drive/17GU2XANBmjmv_40srrK8uQC6EA2VlEvm?usp=sh
 
 I must first import the essential libraries for computation.
 
-![image](https://github.com/user-attachments/assets/ac5cce44-87ba-42b0-a263-19204d285523)
-
+```
+import pandas as pd
+import numpy as np
+```
 **Step 1 : Load data**
 
 To efficiently load data from multiple Google Sheet links without repeating code, I developed the following function:
 
-![image](https://github.com/user-attachments/assets/445eb046-13ac-476b-a82a-3bbddc097b8a)
+```
+def read_file_ggsheet(file_id, month_col=None):
+    df_ggsheet = pd.read_excel('https://docs.google.com/spreadsheets/d/' + file_id + '/export?format=xlsx')
+    
+    if month_col is not None:
+        df_202303 = df_ggsheet[
+            (df_ggsheet[month_col].dt.month == 3) & (df_ggsheet[month_col].dt.year == 2023)
+        ]
+        return df_202303
+    else:
+        return df_ggsheet
+```
 
 Then, We just need to input the variants:
 
-![image](https://github.com/user-attachments/assets/7780ce03-4856-45cd-857e-b243ee749576)
+```
+df_daily = read_file_ggsheet(file_id='1AZOIThOV4P-0eYDge53ZwumVkfkHoYPWxst3k3Bv87c',month_col="date")
+df_customer = read_file_ggsheet(file_id='1by8tPHwOnq3uKYK2E7sA9VBUYoPM4p1Rnrm_Ss9cyHI')
+df_receipt = read_file_ggsheet(file_id='1qayqML1zCKdmtzutkcy9LWvE6xFRm6TGBEVkHHJKIuE',month_col="date")
+df_payroll = read_file_ggsheet(file_id='1c_WihqTZCQvNgxzmd-OwhR9i5diwtfxXVLyMn8R-Lp4',month_col="month")
+df_expenses = read_file_ggsheet(file_id='10OGbaywwMIqKgnPGy8VDvpBVtjyqln47iYa2lFhI9Mw',month_col="month")
+```
 
-View data :
+Check data :
 
 df_daily.head()
 
@@ -120,11 +139,40 @@ $$
 CAC = \frac{TotalSalesandMarketingExpenses}{NumberofNewCustomersAcquired}
 $$
 
+*To calculate the above key metric, I need to calculate the number below:*
+
+| **Line** | **Code**                                                                                           |
+|---------|----------------------------------------------------------------------------------------------------|
+| 1       | `online_spending = df_daily['spending'].sum()`                                                    |
+| 2       | `sales_and_makerting_cost = df_payroll[df_payroll['department'].isin(["Sales", "Marketing"])]['paid'].sum()` |
+| 3       | `mkt_software_cost = df_expenses[df_expenses['item'] == "Salesforce"]['amount'].sum()`             |
+| 4       | `total_sales_mkt_cost = online_spending + sales_and_makerting_cost + mkt_software_cost`            |
+| 5       | `total_new_customers = df_receipt['new_customer'].sum()`                                           |
+
+```
+CAC = total_sales_mkt_cost / total_new_customers
+CAC = 1213.968253968254
+```
+
 **Average Revenue Per User (ARPU):**
 
 $$
 ARPU = \frac{TotalRevenue}{NumberofUsers}
 $$
+
+*To calculate the above key metric, I need to calculate the number below:*
+
+| **Line** | **Code**                                                                                           |
+|---------|----------------------------------------------------------------------------------------------------|
+| 1       | `total_revenue = df_receipt['receipt_amount'].sum()`                                               |
+| 2       | `number_cus=len(df_receipt['customer_id'].unique())`                                               |
+
+```
+ARPU = total_revenue / number_cus
+ARPU = 284.3595890410959
+```
+
+
 
 **Cost of Goods Sold (COGS) :**
 

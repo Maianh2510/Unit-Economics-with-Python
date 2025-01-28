@@ -172,8 +172,6 @@ ARPU = total_revenue / number_cus
 ARPU = 284.3595890410959
 ```
 
-
-
 **Cost of Goods Sold (COGS) :**
 
 $$
@@ -182,17 +180,46 @@ $$
 
 **⚠️ Pay attention!** As a software service company, TechStream Solutions only calculates the values generated during the period, having no beginning or ending inventory.
 
+*To calculate the above key metric, I need to calculate the number below:*
+
+| **Line** | **Code**                                                                                           |
+|---------|----------------------------------------------------------------------------------------------------|
+| 1       | `server_and_software_licences_cost = df_expenses[df_expenses['item'].isin (["AWS Hosting","Google Cloud Storage","Atlassian Jira"])]['amount'].sum()` |
+| 2       | `salary_of_direct_employees = df_payroll[df_payroll['department'] == "Engineering"]['paid'].sum()`                                               |
+
+```
+COGS = server_and_software_licences_cost + salary_of_direct_employees
+COGS = 19400
+```
+
 **Gross Margin :**
 
 $$
 GrossMargin = \frac{(Revenue - COGS)}{Revenue} \times 100
 $$
 
+*I calculated the number below:*
+
+```
+Gross_Margin = ((total_revenue - COGS) / total_revenue)*100
+Gross_Margin = 76.63579540664554
+```
+                                            |
 **Customer Lifetime Value (LTV) :**
 
 $$
 LTV = ARPU \times CustomerLifespan \times GrossMargin
 $$
+
+*To calculate the above key metric, I need to calculate the number below:*
+```
+avg_lifespan_months = ((df_customer['churn_date']-df_customer['start_date']).dt.days / 30).mean()
+```
+
+```
+LTV = ARPU*avg_lifespan_months*Gross_Margin
+LTV = 214463.5493150685
+```
 
 **LTV/CAC**
 
@@ -200,7 +227,13 @@ $$
 \frac{LTV}{CAC}
 $$
 
-*To calculate the above key metrics, I need to calculate the number below:*
+*I calculated the number below:*
+
+```
+LTV_devided_by_CAC = LTV/CAC
+LTV_devided_by_CAC = 176.66322707700465
+```
+
 
 
 

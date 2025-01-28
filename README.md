@@ -58,37 +58,103 @@ Then, We just need to input the variants:
 
 ![image](https://github.com/user-attachments/assets/7780ce03-4856-45cd-857e-b243ee749576)
 
+View data :
+
+df_daily.head()
+
+|index|date|channel|spending|
+|---|---|---|---|
+|236|2023-03-01 |Google Ads|449|
+|237|2023-03-01 |Facebook Ads|229|
+|238|2023-03-01 |LinkedIn Ads|835|
+|239|2023-03-01 |Twitter Ads|986|
+|240|2023-03-02 |Google Ads|912|
+
+df_customer.head()
+
+|index||start\_date|churn\_date|
+|---|---|---|---|
+|0|1000|2021-11-15 |2022-09-14 |
+|1|1001|2022-04-15 |2023-02-16 |
+|2|1002|2022-10-30 |2023-02-04 |
+|3|1003|2021-08-22 |2023-02-07 |
+|4|1004|2021-08-23 |2022-02-02 |
+
+df_receipt.head()
+
+|index|date|customer\_id|receipt\_amount|new\_customer|
+|---|---|---|---|---|
+|618|2023-03-01 |1062|103|0|
+|619|2023-03-01 |2243|157|0|
+|620|2023-03-01 |1166|372|0|
+|621|2023-03-01 |2406|426|1|
+|622|2023-03-01 |2761|41|1|
+
+df_payroll.head()
+
+|index|month|department|employee\_name|position|paid|
+|---|---|---|---|---|---|
+|34|2023-03-01 |Sales|John Doe|Sales Manager|1500|
+|35|2023-03-01 |Sales|Jane Smith|Sales Associate|600|
+|36|2023-03-01 |Sales|Jim Brown|Sales Associate|700|
+|37|2023-03-01 |Sales|Laura Miller|Sales Associate|800|
+|38|2023-03-01 |Marketing|Alice Johnson|Marketing Manager|1650|
+
+df_expenses.head()
+
+|index|\#|month|category|item|amount|
+|---|---|---|---|---|---|
+|18|19|2023-03-01 |Server Costs|AWS Hosting|8400|
+|19|20|2023-03-01 |Server Costs|Google Cloud Storage|4400|
+|20|21|2023-03-01 |Software Licenses|Atlassian Jira|1400|
+|21|22|2023-03-01 |Software Licenses|Slack|900|
+|22|23|2023-03-01 |Software Licenses|Salesforce|1700|
+
 **Step 2 : Calculate**
 
 We have the following formulas:
 
 **Customer Acquisition Cost (CAC):**
 
-![image](https://github.com/user-attachments/assets/bce016be-4dfb-4448-bc5d-03d9f6dc75b5)
+$$
+CAC = \frac{TotalSalesandMarketingExpenses}{NumberofNewCustomersAcquired}
+$$
 
 **Average Revenue Per User (ARPU):**
 
-![image](https://github.com/user-attachments/assets/cbcb2a20-673a-4622-b051-6190fa1e02b5)
+$$
+ARPU = \frac{TotalRevenue}{NumberofUsers}
+$$
 
 **Cost of Goods Sold (COGS) :**
 
-![image](https://github.com/user-attachments/assets/202f4d98-d25f-4e1a-a8a8-be093ae1d49e)
+$$
+COGS = BeginningInventory + PurchasesDuringthePeriod - EndingInventory
+$$
 
 **⚠️ Pay attention!** As a software service company, TechStream Solutions only calculates the values generated during the period, having no beginning or ending inventory.
 
 **Gross Margin :**
 
-![image](https://github.com/user-attachments/assets/98c60433-fad0-4c88-a144-fbd0fb711cd1)
+$$
+GrossMargin = \frac{(Revenue - COGS)}{Revenue} \times 100
+$$
 
 **Customer Lifetime Value (LTV) :**
 
-![image](https://github.com/user-attachments/assets/4092434d-0c73-4cc1-b305-f23721d94144)
+$$
+LTV = ARPU \times CustomerLifespan \times GrossMargin
+$$
 
 **LTV/CAC**
 
-LTV/CAC
+$$
+\frac{LTV}{CAC}
+$$
 
 *To calculate the above key metrics, I need to calculate the number below:*
+
+
 
 
 

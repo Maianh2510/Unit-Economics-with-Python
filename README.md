@@ -1,8 +1,9 @@
 # Unit-Economics-with-Python
 
-📜 Introduction
+## 📜 Introduction
 
-Context
+
+### Context
 
 I have been hired for a new job as a Data Analyst.
 
@@ -17,7 +18,8 @@ https://drive.google.com/drive/folders/1qhOW9Y2orRXuzbX-kXEmuJ7TMQiRs2Uv?usp=dri
 My First Task: Calculating Unit Economics for Streamline Pro
 Background: Streamline Pro is a comprehensive project management and collaboration tool designed to help businesses manage projects, track progress, and collaborate efficiently. Understanding the unit economics of Streamline Pro is crucial for evaluating its financial health and sustainability. This involves analysing key metrics such as Customer Acquisition Cost (CAC), Average Revenue Per User (ARPU), Cost of Goods Sold (COGS), Gross Margin, Customer Lifetime Value (LTV), and the LTV/CAC ratio.
 
-🎯 Objective: My task is to calculate the unit economics for Streamline Pro for the month of **March 2023**. This will help us assess the profitability and efficiency of our customer acquisition strategies and operational expenses.
+## 🎯 Objective: 
+My task is to calculate the unit economics for Streamline Pro for the month of **March 2023**. This will help us assess the profitability and efficiency of our customer acquisition strategies and operational expenses.
 
 By performing these calculations, TechStream Solutions aims to:
 
@@ -26,7 +28,7 @@ Assess the efficiency of their marketing and sales strategies.
 Make informed decisions on scaling their operations and optimizing their resource allocation.
 This information will guide TechStream Solutions in refining their business strategies, ensuring sustainable growth, and maximizing profitability.
 
-**What should we do?**
+### What should we do?
 
 Today I need to calculate Unit Economics for "TechStream Solutions" including:
 
@@ -42,7 +44,7 @@ The calculations should be made based on the data from the shared Google Drive f
 
 https://colab.research.google.com/drive/17GU2XANBmjmv_40srrK8uQC6EA2VlEvm?usp=sharing
 
-**How did I do it?**
+### How did I do it?
 
 I must first import the essential libraries for computation.
 
@@ -234,13 +236,13 @@ LTV_devided_by_CAC = LTV/CAC
 LTV_devided_by_CAC = 176.66322707700465
 ```
 
-**Conclusion & Recommendations** ✍
+## Conclusion & Recommendations ✍
 
-🔹 Conclusion:
+### 🔹 Conclusion:
 
 The business enjoys a high profit margin and a reasonable customer acquisition cost (CAC) relative to customer lifetime value (LTV). The high LTV/CAC ratio indicates a strong capacity for quick capital recovery and sustainable growth.
 
-🔹 Recommendations:
+### 🔹 Recommendations:
 
 ✅ Maintain customer attraction effectiveness
 CAC remains low compared to customer value, allowing for continued expansion of marketing campaigns.
